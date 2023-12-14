@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}Fetal Health Check!{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center my-4" style="color: #4a90e2;">Obesity or CVD risk Prediction</h1>
+    <p class="text-justify" style="color: #4a90e2;">
+        The dataset stands out for its comprehensive and detailed approach to understanding obesity, a critical global health issue.
+    </p>
+<div class="row my-4 justify-content-center">
+    <div class="col-md-6">
+        <img src="{{ url_for('static', filename='images/ob_reason.jpg') }}" alt="Fetal Health Check" class="img-fluid">
+    </div>
+</div>
+
+    <p class="text-justify" style="color: #4a90e2;" >
+        It offers a rich blend of demographic, dietary, and physical activity data across a diverse population from Mexico, Peru, and Colombia. This makes it an invaluable resource for predictive healthcare modeling, public health policy development, and academic research. Its potential to provide insights into the varying factors contributing to obesity and cardiovascular diseases across different cultures and age groups is particularly intriguing, highlighting its significance in both the healthcare sector and public health initiatives.
+    </p>
+</div>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Data Exploration{% endblock %}
+
+{% block content %}
+    <html>
+    <body>
+<div>Correlation Matrix:</div>
+<div id="correlationMatrix" style="width:100%; height:100%;"></div>
+<div>Distribution of Obesity Level in the Dataset:</div>
+<div id="eachtypefat" style="width:600px; height:400px;"></div>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+
+    var corrData = JSON.parse('{{ corr_json | safe }}');
+
+    var data = [{
+        z: corrData.matrix_data,
+        x: corrData.columns,
+        y: corrData.index,
+        type: 'heatmap',
+        colorscale: 'Viridis'
+    }];
+
+    var layout = {
+        title: 'Correlation Matrix',
+        annotations: [],
+        xaxis: {
+            ticks: '',
+            side: 'top'
+        },
+        yaxis: {
+            ticks: '',
+            ticksuffix: ' ',
+            autorange: 'reversed',
+            autosize: true
+        }
+    };
+
+    for (var i = 0; i < corrData.matrix_data.length; i++) {
+        for (var j = 0; j < corrData.matrix_data[i].length; j++) {
+            var currentValue = corrData.matrix_data[i][j];
+            var textColor = currentValue != 0.0 ? 'white' : 'black';
+            var result = {
+                xref: 'x1',
+                yref: 'y1',
+                x: corrData.columns[j],
+                y: corrData.index[i],
+                text: currentValue.toFixed(2),
+                font: {
+                    family: 'Arial',
+                    size: 12,
+                    color: textColor
+                },
+                showarrow: false
+            };
+            layout.annotations.push(result);
+        }
+    }
+
+    Plotly.newPlot('correlationMatrix', data, layout);
+        let barChartData = [{
+        "x": ['Insufficient_Weight','Normal_Weight','Overweight_Level_I','Overweight_Level_II','Obesity_Type_I','Obesity_Type_II','Obesity_Type_III'],
+        "y": [272, 287, 290, 290, 351, 297, 324],
+        "type": "bar",
+        "marker": {
+            "color": ['red', 'green', 'blue', 'orange', 'yellow', 'purple', 'pink']
+        }
+    }];
+    Plotly.newPlot("eachtypefat", barChartData);
+</script>
+</body>
+    </html>
+{% endblock %}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}Data Exploration{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Data Exploration Results</h2>
+    <p>•Basic summary statistics for columns containing numeric data type</p>
+    <img src="{{ url_for('static', filename='images/dataset.png') }}" alt="Dataset" class="img-fluid">
+    <p>•Check the Skewness and the Kurtosis of the numerical data</p>
+    <img src="{{ url_for('static', filename='images/skewness.png') }}" alt="skewness" class="img-fluid">
+    <img src="{{ url_for('static', filename='images/skewness_output.png') }}" alt="skewness" class="img-fluid">
+    <p>We surprisingly find that the "Age" variable is significantly skewed and has outliers (Most ages are between 19 and 25), whereas the "Height" variable is distributed normally.</p>
+    <p>•Very interesting figure</p>
+    <img src="{{ url_for('static', filename='images/figure.png') }}" alt="figure" class="img-fluid">
+    <p>We can see that Obesity_Type_III, the majority of the points go to women, with one point referring to a single man; Obesity_Type_II the majority of the points go to men, with two points going to women.</p>
+    <p>Correlation matrix</p>
+    <img src="{{ url_for('static', filename='images/result1.png') }}" alt="Data Exploration Result 1" class="img-fluid">
+
+
+    <!-- Add more images as needed -->
+</div>
+{% endblock %}
+
